@@ -12,6 +12,7 @@ export WWW_HOME
 
 if [[ $CURRENT_OS == 'OS X' ]]; then
     # OS X Env Variables
+    export ZSH_CACHE_DIR=$HOME/.zsh
 elif [[ $CURRENT_OS == 'Linux' ]]; then
     # Linux Env Variables
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
