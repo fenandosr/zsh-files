@@ -27,16 +27,20 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
 
     # MIT-Scheme
     export MITSCHEME_LIBRARY_PATH=/usr/local/lib/mit-scheme-c/
-    #  Django
-    export PATH=$PATH:/Library/Python/2.5/site-packages/django/bin
     #  MacPorts
     export PATH=$PATH:/opt/local/bin
     #  Add the bin/Mac directory
     export PATH=$PATH:~/bin/Mac
     # Add all npm packages
     export PATH=$PATH:/usr/local/share/npm/bin
-    # Add Postgres.app
-    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+    # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+    export PATH="$PATH:$HOME/.rvm/bin"
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+    # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+    export PATH="$PATH:$HOME/.rvm/bin"
+    # Others
+    export PATH="/usr/local/opt/libxml2/bin:/usr/local/opt/python/libexec/bin:/usr/local/sbin:$PATH"
+
 
 elif [[ $CURRENT_OS == 'Linux' ]]; then
     # Prefix /usr/local/bin for brew if it exists

@@ -5,7 +5,6 @@
 # Builtin aliases
 alias ll='ls -AlF'
 alias la='ls -a'
-alias lla='ls -al'
 
 # Some cd aliases
 alias back='cd -'
@@ -27,9 +26,6 @@ alias ............='cd ../../../../../../../../../../../'
 alias -g L=' | less'
 alias -g T=' | tail -20'
 alias -g NUL=' > /dev/null 2>&1'
-
-# I like to be safe...
-alias rm='rm -i'
 
 # derp derp
 alias mkdirp='mkdir -p'
@@ -115,7 +111,7 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 	alias rogue-ssh='ssh fenando@42.111.1.89'
 	# Short for rogueone
 	alias rogue='fenando@42.111.1.89'
-	
+
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     alias py='/cygdrive/c/Python27/python'
