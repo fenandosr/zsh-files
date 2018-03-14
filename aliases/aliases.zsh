@@ -52,9 +52,6 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     alias 'kb-disable'='sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
     alias 'kb-enable'='sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
 
-    # Custom search script
-    alias ebook='locates ~/EBooks '
-
     # Oh
     alias rebuild-open-with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -seed /Applications{,/Utilities}'
     alias inet='ifconfig | grep inet'
