@@ -78,3 +78,53 @@ mkcd() {
     mkdir -p $1
     cd $1
 }
+
+urlencode() {
+    # urlencode <string>
+    old_lc_collate=$LC_COLLATE
+    LC_COLLATE=C
+
+    local length="${#1}"
+    for (( i = 0; i < length; i++ )); do
+        local c="${1:i:1}"
+        case $c in
+            [a-zA-Z0-9.~_-]) printf "$c" ;;
+            *) printf '%%%02X' "'$c" ;;
+        esac
+    done
+
+    LC_COLLATE=$old_lc_collate
+}
+
+# For history on peco
+# taken from here https://gist.github.com/nacyot/2c9151f2274ccad8bffc
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+
+#
+# OS Specific functions
+#
+if [[ $CURRENT_OS == 'OS X' ]]; then
+    # OS X functions
+elif [[ $CURRENT_OS == 'Linux' ]]; then
+    # Linux functions
+    whattheduck() {
+        # whattheduck <search_string>
+        surf https://www.duckduckgo.com/`urlencode "$1"`
+    }
+elif [[ $CURRENT_OS == 'Cygwin' ]]; then
+    # Cygwin functions
+fi
+

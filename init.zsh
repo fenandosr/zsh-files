@@ -25,12 +25,11 @@ source $SOURCE/env/env.zsh
 
 # Various functions
 source $SOURCE/functions/functions.zsh
-source $SOURCE/functions/tmux.zsh
 
 # Paths
 source $SOURCE/path/paths.zsh
 
-# AWS completion
+# Completion
 source $SOURCE/completion/aws.zsh
 
 # Colors

@@ -3,7 +3,7 @@
 #
 
 # Builtin aliases
-alias ll='ls -l'
+alias ll='ls -AlF'
 alias la='ls -a'
 alias lla='ls -al'
 
@@ -34,15 +34,13 @@ alias rm='rm -i'
 # derp derp
 alias mkdirp='mkdir -p'
 
-# Alias Git, moved most other aliases to ~/.gitconfig
-# For some reason, Git doesn't like capitalized aliases. Some must remain.
+# Alias Git
 alias g='git'
-alias gp='git pull'
-alias gP='git push'
+alias gull='git pull'
+alias gush='git push'
 
-# Racket: load Readline
-alias racketrl='racket -il readline'
-
+# Misc
+alias jn='jupyter notebook'
 
 #
 # OS Specific Aliases
@@ -54,30 +52,28 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     alias showhiddenfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder'
     alias hidehiddenfiles='defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder'
 
+    # Toogle location services
     alias 'kb-disable'='sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
     alias 'kb-enable'='sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
-
 
     # Custom search script
     alias ebook='locates ~/EBooks '
 
+    # Oh
     alias rebuild-open-with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -seed /Applications{,/Utilities}'
+    alias inet='ifconfig | grep inet'
 
     # Journal Alias
-    alias journal='vim ~/Documents/Journal/`date "+%Y"`/`date "+%B"`/`date "+%d-%A"`.txt'
-
-    # EBooks
-    alias tex4ebook='texlua ~/Library/texmf/tex/latex/tex4ebook/tex4ebook.lua'
-
+    alias journal='vim ~/Documents/Journal/`date "+%Y"`/`date "+%B"`/`date "+%d-%A"`.md'
 
     #
     # Application aliases
     #
-    alias vine='open -a Vine\ Server'
     alias ss='/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine &'
 
     # Open from command line
     alias finder='open -a Finder '
+
 elif [[ $CURRENT_OS == 'Linux' ]]; then
     #
     # Global Linux
@@ -85,9 +81,7 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 
     # Misc Aliases
     alias ls='ls --color=auto'
-
-    # MVim == GVim on Linux
-    alias mvim='gvim'
+    alias inet='ip address | grep inet'
 
     # Extensions
     alias -s avi=vlc
@@ -106,26 +100,22 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     alias -s hs=$EDITOR
     alias -s c=$EDITOR
 
+
+
     #
     # User Specific Aliases
     #
 
-    if [[ $USER == 'davis' ]]; then
-        # Monitors
-        # Moved to a separate script in ~/Scripts
-        # alias vga='xrandr --output CRT1 --same-as LCD --auto'
-        # alias dual-monitors='xrandr --output CRT1 --right-of LCD --mode 1660x1050'
+    if [[ $HOST == 'rogueone' ]]; then
+        # Music Collection on julie
+	alias julie-music='sudo mount -t cifs //42.111.1.85/fr/Music ~/Music -o user=fr'
 
-        # Music Collection
-        alias music-update='chmod -R a+X /home/davis/Music/Artists'
-
-        # Hahah, that's what it looks like to me
-        alias yogurt='yaourt'
-    elif [[ $USER == 'davisjos' ]]; then
-        export ECLIPSE_HOME=/opt/eclipse/
-        alias eclimd=$ECLIPSE_HOME/eclimd
-        alias eclimd-rhel='$ECLIPSE_HOME/eclimd -Dosgi.instance.area.default=@user.home/Programming/RHEL/workspace'
-        alias eclimd-samples='$ECLIPSE_HOME/eclimd -Dosgi.instance.area.default=@user.home/Programming/Samples'
+    elif [[ $HOST == 'julie' ]]; then
+	# For compatibility with rogue
+	alias rogue-ssh='ssh fenando@42.111.1.89'
+	# Short for rogueone
+	alias rogue='fenando@42.111.1.89'
+	
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     alias py='/cygdrive/c/Python27/python'
