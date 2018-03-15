@@ -6,6 +6,8 @@
 WWW_HOME='https://www.duckduckgo.com'
 export WWW_HOME
 
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+
 #
 # OS Specific Env Variables
 #
