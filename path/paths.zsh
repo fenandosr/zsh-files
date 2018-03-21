@@ -58,6 +58,9 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # User Specific Aliases
     #
 
+    # Path for selenium webdriver
+    export PATH=$PATH:/opt/webdriver
+
     if [[ $USER == 'xxxxx' ]]; then
         # Home Linux
     elif [[ $USER == 'xxxxxxxx' ]]; then
