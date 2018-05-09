@@ -37,6 +37,7 @@ alias gush='git push'
 
 # Misc
 alias jn='jupyter notebook'
+alias td='thyme -d'
 
 #
 # OS Specific Aliases
@@ -101,13 +102,13 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 
     if [[ $HOST == 'rogueone' ]]; then
         # Music Collection on julie
-	alias julie-music='sudo mount -t cifs //42.111.1.85/fr/Music ~/Music -o user=fr'
+    alias julie-music='sudo mount -t cifs //42.111.1.85/fr/Music ~/Music -o user=fr'
 
     elif [[ $HOST == 'julie' ]]; then
-	# For compatibility with rogue
-	alias rogue-ssh='ssh fenando@42.111.1.89'
-	# Short for rogueone
-	alias rogue='fenando@42.111.1.89'
+    # For compatibility with rogue
+    alias rogue-ssh='ssh fenando@42.111.1.89'
+    # Short for rogueone
+    alias rogue='fenando@42.111.1.89'
 
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
