@@ -240,6 +240,16 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 
+# asking yes or no
+function ask_yes_or_no() {
+    read -p "$1 ([y]es or [N]o): "
+    case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
+        y|yes) echo "yes" ;;
+        *)     echo "no" ;;
+    esac
+}
+
+
 #
 # OS Specific functions
 #
