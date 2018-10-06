@@ -61,6 +61,9 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # Path for selenium webdriver
     export PATH=$PATH:/opt/webdriver
 
+    # Path for snaps
+    export PATH=$PATH:/snap/bin
+
     if [[ $USER == 'xxxxx' ]]; then
         # Home Linux
     elif [[ $USER == 'xxxxxxxx' ]]; then
