@@ -24,7 +24,8 @@ alias ............='cd ../../../../../../../../../../../'
 
 # ZSH Global Aliases
 alias -g L=' | less'
-alias -g T=' | tail -20'
+alias -g H=' | head -17'
+alias -g T=' | tail -22'
 alias -g NUL=' > /dev/null 2>&1'
 
 # derp derp
@@ -105,10 +106,6 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     alias julie-music='sudo mount -t cifs //42.111.1.85/fr/Music ~/Music -o user=fr'
 
     elif [[ $HOST == 'julie' ]]; then
-    # For compatibility with rogue
-    alias rogue-ssh='ssh fenando@42.111.1.89'
-    # Short for rogueone
-    alias rogue='fenando@42.111.1.89'
 
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
