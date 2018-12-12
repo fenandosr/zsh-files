@@ -101,9 +101,10 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # User Specific Aliases
     #
 
-    if [[ $HOST == 'rogueone' ]]; then
+    if [[ $HOST == 'rogue' ]]; then
         # Music Collection on julie
     alias julie-music='sudo mount -t cifs //42.111.1.85/fr/Music ~/Music -o user=fr'
+    alias Archi='$HOME/Programs/Archi/Archi'
 
     elif [[ $HOST == 'julie' ]]; then
 
