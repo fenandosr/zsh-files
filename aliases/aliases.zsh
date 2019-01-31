@@ -107,6 +107,8 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 
     elif [[ $HOST == 'julie' ]]; then
 
+    elif [[ $HOST == 'su' ]]; then
+
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     alias py='/cygdrive/c/Python27/python'
