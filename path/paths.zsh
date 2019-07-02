@@ -53,7 +53,7 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # Path for snaps
     export PATH=$PATH:/snap/bin
 
-    NODEVERSION=v10.15.0
+    NODEVERSION=v10.16.0
     NODEDISTRO=linux-x64
     export PATH=/usr/local/lib/nodejs/node-$NODEVERSION-$NODEDISTRO/bin:$PATH
 
