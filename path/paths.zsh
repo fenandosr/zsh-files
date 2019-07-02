@@ -2,7 +2,7 @@
 # Paths for all Computers
 #
 
-#  Add the ~/bin/ directory for all users
+# Add the ~/bin/ directory for all users
 export PATH=$PATH:~/bin
 
 #
@@ -43,20 +43,9 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
 
 
 elif [[ $CURRENT_OS == 'Linux' ]]; then
-    # Prefix /usr/local/bin for brew if it exists
-    #if hash brew 2>/dev/null; then
-    #    export PATH="$HOME/.linuxbrew/bin:$PATH"
-    #    export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
-    #fi
 
-    #  Add the bin directory
-    export PATH=$PATH:~/bin/
-
-    # CentOS Paths
-
-    #
-    # User Specific Aliases
-    #
+    # Go's Path
+    export PATH=$PATH:/usr/local/go/bin
 
     # Path for selenium webdriver
     export PATH=$PATH:/opt/webdriver
@@ -64,6 +53,13 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # Path for snaps
     export PATH=$PATH:/snap/bin
 
+    NODEVERSION=v10.15.0
+    NODEDISTRO=linux-x64
+    export PATH=/usr/local/lib/nodejs/node-$NODEVERSION-$NODEDISTRO/bin:$PATH
+
+    #
+    # User Specific Aliases
+    #
     if [[ $USER == 'xxxxx' ]]; then
         # Home Linux
     elif [[ $USER == 'xxxxxxxx' ]]; then
