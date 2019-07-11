@@ -55,14 +55,13 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 
     NODEVERSION=v10.16.0
     NODEDISTRO=linux-x64
-    export PATH=/usr/local/lib/nodejs/node-$NODEVERSION-$NODEDISTRO/bin:$PATH
 
     #
     # User Specific Aliases
     #
     if [[ $USER == 'xxxxx' ]]; then
         # Home Linux
-    elif [[ $USER == 'xxxxxxxx' ]]; then
+    elif [[ $USER == 'rogue' ]]; then
         # Work Linux
 
         # Android SDK Tools
@@ -71,6 +70,7 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
         #export PATH=$PATH:~/Programming/SDKs/platform-tools
         # Jars
         #export PATH=$PATH:~/jars
+        export PATH=/usr/local/lib/nodejs/node-$NODEVERSION-$NODEDISTRO/bin:$PATH
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     # nothing yet
