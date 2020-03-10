@@ -4,6 +4,7 @@
 
 # Add the ~/bin/ directory for all users
 export PATH=$PATH:~/bin
+export PATH=$PATH:~/.local/bin/aws_completer
 
 #
 # OS Specific Paths
