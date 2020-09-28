@@ -45,6 +45,10 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
 
 elif [[ $CURRENT_OS == 'Linux' ]]; then
 
+    # pyenv
+    export PATH=$PATH:$HOME/.pyenv/bin
+
+
     # Go's Path
     export PATH=$PATH:/usr/local/go/bin
     export PATH=$PATH:$HOME/go/bin
