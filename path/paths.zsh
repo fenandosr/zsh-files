@@ -25,7 +25,7 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     #
     # Common paths
     #
-    export PATH="/usr/local/opt/libxml2/bin:/usr/local/opt/python/libexec/bin:/usr/local/sbin:$PATH"
+    export PATH="/usr/local/opt/libxml2/bin:/usr/local/sbin:$PATH"
     # MIT-Scheme
     export MITSCHEME_LIBRARY_PATH=/usr/local/lib/mit-scheme-c/
     #  MacPorts
@@ -47,9 +47,6 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 
     # Selenium webdriver
     export PATH=$PATH:/opt/webdriver
-
-    # Snaps
-    export PATH=$PATH:/snap/bin
 
     # Linuxbrew
     export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
