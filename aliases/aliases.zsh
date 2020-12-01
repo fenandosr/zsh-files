@@ -39,6 +39,7 @@ alias gush='git push'
 # Misc
 alias jn='jupyter notebook'
 alias td='thyme -d'
+alias itree='tree --prune -I $(cat .gitignore | egrep -v "^#.*$|^[[:space:]]*$" | tr "\\n" "|")'
 
 #
 # OS Specific Aliases
