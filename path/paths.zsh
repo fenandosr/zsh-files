@@ -51,6 +51,9 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # Linuxbrew
     export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
+    # Flutter
+    export PATH=$PATH:$HOME/Apps/flutter/bin
+
     #
     # User Specific Aliases
     #
