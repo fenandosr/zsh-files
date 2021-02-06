@@ -21,6 +21,7 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     # less support for highlighting code
     # taken from here: https://superuser.com/questions/71588/how-to-syntax-highlight-via-less
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+    export XDG_CACHE_HOME=$HOME/.cache
 #
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     # Cygwin Env Variables
