@@ -28,7 +28,7 @@ source $SOURCE/functions/functions.zsh
 source $SOURCE/path/paths.zsh
 
 # Completion
-#source $SOURCE/completion/aws.zsh
+source $SOURCE/completion/custom.zsh
 
 # Colors
 source $SOURCE/colors/config.zsh
