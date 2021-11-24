@@ -24,8 +24,8 @@ alias ............='cd ../../../../../../../../../../../'
 
 # ZSH Global Aliases
 alias -g L=' | less'
-alias -g H=' | head -17'
-alias -g T=' | tail -22'
+alias -g H=' | head -25'
+alias -g T=' | tail -25'
 alias -g NUL=' > /dev/null 2>&1'
 
 # derp derp
@@ -38,15 +38,16 @@ alias gush='git push'
 
 # Misc
 alias jn='jupyter notebook'
-alias td='thyme -d'
 alias itree='tree --prune -I $(cat .gitignore | egrep -v "^#.*$|^[[:space:]]*$" | tr "\\n" "|")'
 
 #
 # OS Specific Aliases
 #
-
-# OS X Aliases
 if [[ $CURRENT_OS == 'OS X' ]]; then
+    #
+    # OS X Aliases
+    #
+
     # Hidden files
     alias showhiddenfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder'
     alias hidehiddenfiles='defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder'
@@ -55,17 +56,8 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     alias 'kb-disable'='sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
     alias 'kb-enable'='sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
 
-    # Oh
-    alias rebuild-open-with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -seed /Applications{,/Utilities}'
-    alias inet='ifconfig | grep inet'
-
     # Journal Alias
     alias journal='vim ~/Documents/Journal/`date "+%Y"`/`date "+%B"`/`date "+%d-%A"`.md'
-
-    #
-    # Application aliases
-    #
-    alias ss='/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine &'
 
     # Open from command line
     alias finder='open -a Finder '
@@ -96,22 +88,18 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     alias -s hs=$EDITOR
     alias -s c=$EDITOR
 
-
-
     #
     # User Specific Aliases
     #
 
     if [[ $HOST == 'rogue' ]]; then
         # Music Collection on julie
-    alias julie-music='sudo mount -t cifs //42.111.1.85/fr/Music ~/Music -o user=fr'
-    alias Archi='$HOME/Programs/Archi/Archi'
-
+        alias julie-music='sudo mount -t cifs //42.111.1.85/fr/Music ~/Music -o user=fr'
     elif [[ $HOST == 'julie' ]]; then
 
     elif [[ $HOST == 'su' ]]; then
 
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
-    alias py='/cygdrive/c/Python27/python'
+
 fi

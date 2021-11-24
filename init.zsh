@@ -14,11 +14,9 @@ source $SOURCE/lib/theme-and-appearance.zsh
 
 # Aliases
 source $SOURCE/aliases/aliases.zsh
-source $SOURCE/aliases/latex.zsh
 
 # Custom things
 source $SOURCE/custom/load.zsh
-source $SOURCE/custom/z.zsh
 
 # Env settings
 source $SOURCE/env/env.zsh
@@ -30,7 +28,7 @@ source $SOURCE/functions/functions.zsh
 source $SOURCE/path/paths.zsh
 
 # Completion
-source $SOURCE/completion/aws.zsh
+#source $SOURCE/completion/aws.zsh
 
 # Colors
 source $SOURCE/colors/config.zsh
