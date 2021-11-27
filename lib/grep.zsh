@@ -1,28 +1,22 @@
-# is x grep argument available?
+# Better grep results
+
+GREP_OPTIONS="--color=auto"
+
+# avoid VCS folders (if the necessary grep flags are available)
 grep-flag-available() {
     echo | grep $1 "" >/dev/null 2>&1
 }
-
-GREP_OPTIONS=""
-
-# color grep results
-if grep-flag-available --color=auto; then
-    GREP_OPTIONS+=" --color=auto"
-fi
-
-# ignore VCS folders (if the necessary grep flags are available)
-VCS_FOLDERS="{.bzr,CVS,.git,.hg,.svn}"
-
 if grep-flag-available --exclude-dir=.cvs; then
-    GREP_OPTIONS+=" --exclude-dir=$VCS_FOLDERS"
+    for PATTERN in .cvs .git .hg .svn; do
+        GREP_OPTIONS+=" --exclude-dir=$PATTERN"
+    done
 elif grep-flag-available --exclude=.cvs; then
-    GREP_OPTIONS+=" --exclude=$VCS_FOLDERS"
+    for PATTERN in .cvs .git .hg .svn; do
+        GREP_OPTIONS+=" --exclude=$PATTERN"
+    done
 fi
-
-# export grep settings
-alias grep="grep $GREP_OPTIONS"
-
-# clean up
-unset GREP_OPTIONS
-unset VCS_FOLDERS
 unfunction grep-flag-available
+
+alias grep="grep $GREP_OPTIONS"
+export GREP_OPTIONS="$GREP_OPTIONS"
+export GREP_COLOR='1;32'
