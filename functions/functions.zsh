@@ -89,13 +89,6 @@ extract() {
     fi
 }
 
-
-mkcd() {
-    mkdir -p $1
-    cd $1
-}
-
-
 # URL-encode a string
 #
 # Encodes a string using RFC 2396 URL-encoding (%-escaped).
@@ -257,10 +250,6 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     # OS X functions
 elif [[ $CURRENT_OS == 'Linux' ]]; then
     # Linux functions
-    whattheduck() {
-        # whattheduck <search_string>
-        surf https://www.duckduckgo.com/`urlencode "$1"`
-    }
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
     # Cygwin functions
 fi

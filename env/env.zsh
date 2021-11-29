@@ -2,10 +2,8 @@
 # Env Variables
 #
 
-# Making duckduckgo the default page (variable for lynx)
-WWW_HOME='https://www.duckduckgo.com'
-export WWW_HOME
-export GOPATH=$HOME/go
+# Making duckduckgo the default page
+export WWW_HOME='https://www.duckduckgo.com'
 
 #
 # OS Specific Env Variables

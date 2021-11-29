@@ -1,5 +1,5 @@
 #
-# Aliases for all Computers
+# Aliases for all
 #
 
 # Builtin aliases
@@ -28,9 +28,6 @@ alias -g H=' | head -25'
 alias -g T=' | tail -25'
 alias -g NUL=' > /dev/null 2>&1'
 
-# derp derp
-alias mkdirp='mkdir -p'
-
 # Alias Git
 alias g='git'
 alias gull='git pull'
@@ -52,13 +49,6 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
     alias showhiddenfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder'
     alias hidehiddenfiles='defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder'
 
-    # Toogle location services
-    alias 'kb-disable'='sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
-    alias 'kb-enable'='sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
-
-    # Journal Alias
-    alias journal='vim ~/Documents/Journal/`date "+%Y"`/`date "+%B"`/`date "+%d-%A"`.md'
-
     # Open from command line
     alias finder='open -a Finder '
 
@@ -68,15 +58,7 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     #
 
     # Misc Aliases
-    alias ls='ls --color=auto'
     alias inet='ip address | grep inet'
-
-    # Extensions
-    alias -s avi=vlc
-    alias -s html=$BROWSER
-    alias -s pdf=epdfview
-    alias -s txt=$EDITOR
-    alias -s text=$EDITOR
 
     # Images
     alias -s png=feh
@@ -84,22 +66,13 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
     alias -s jpg=feh
     alias -s gif=feh
 
-    # Source Extensions
-    alias -s hs=$EDITOR
-    alias -s c=$EDITOR
-
     #
     # User Specific Aliases
     #
 
-    if [[ $HOST == 'rogue' ]]; then
-        # Music Collection on julie
-        alias julie-music='sudo mount -t cifs //42.111.1.85/fr/Music ~/Music -o user=fr'
-    elif [[ $HOST == 'julie' ]]; then
-
-    elif [[ $HOST == 'su' ]]; then
-
+    if [[ $HOST == 'su' ]]; then
+        # none
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
-
+    # none
 fi
