@@ -3,9 +3,9 @@ SOURCE=${0%/*}
 # Lib
 
 source $SOURCE/lib/completion.zsh
-source $SOURCE/lib/history.zsh
-source $SOURCE/lib/grep.zsh
 source $SOURCE/lib/git.zsh
+source $SOURCE/lib/grep.zsh
+source $SOURCE/lib/history.zsh
 source $SOURCE/lib/key-bindings.zsh
 source $SOURCE/lib/misc.zsh
 source $SOURCE/lib/spectrum.zsh
@@ -15,8 +15,11 @@ source $SOURCE/lib/theme-and-appearance.zsh
 # Aliases
 source $SOURCE/aliases/aliases.zsh
 
-# Custom things
-source $SOURCE/custom/load.zsh
+# Colors
+source $SOURCE/colors/config.zsh
+
+# Completion
+source $SOURCE/completion/completions.zsh
 
 # Env settings
 source $SOURCE/env/env.zsh
@@ -26,9 +29,3 @@ source $SOURCE/functions/functions.zsh
 
 # Paths
 source $SOURCE/path/paths.zsh
-
-# Completion
-source $SOURCE/completion/custom.zsh
-
-# Colors
-source $SOURCE/colors/config.zsh
