@@ -13,6 +13,7 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
 
 elif [[ $CURRENT_OS == 'Linux' ]]; then
     export XDG_CACHE_HOME=$HOME/.cache
+    export XDG_CONFIG_HOME=$HOME/.config
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
 
 fi
