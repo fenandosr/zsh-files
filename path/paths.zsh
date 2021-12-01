@@ -46,7 +46,7 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 
 
     #
-    # User Specific Aliases
+    # User Specific
     #
     if [[ $USER == 'none' ]]; then
         # none
