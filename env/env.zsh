@@ -14,11 +14,13 @@ if [[ $CURRENT_OS == 'OS X' ]]; then
 elif [[ $CURRENT_OS == 'Linux' ]]; then
     export XDG_CACHE_HOME=$HOME/.cache
     export XDG_CONFIG_HOME=$HOME/.config
+
     #
     # User Specific
     #
     if [[ $USER == 'fenan' ]]; then
-        export WINHOME="/mnt/c/User/fenan"
+        export WINHOME="/mnt/c/Users/fenan"
+
     fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
 
