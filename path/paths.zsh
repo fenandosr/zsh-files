@@ -44,6 +44,8 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
         [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
     fi
 
+    # Homebrew
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
     #
     # User Specific
