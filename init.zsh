@@ -1,32 +1,22 @@
 SOURCE=${0%/*}
 
 # Lib
+for libfile in $SOURCE/lib/*.zsh; do
+    source "$libfile"
+done
 
-source $SOURCE/lib/completion.zsh
-source $SOURCE/lib/git.zsh
-source $SOURCE/lib/ssh-agent.zsh
-source $SOURCE/lib/grep.zsh
-source $SOURCE/lib/history.zsh
-source $SOURCE/lib/key-bindings.zsh
-source $SOURCE/lib/misc.zsh
-source $SOURCE/lib/spectrum.zsh
-source $SOURCE/lib/termsupport.zsh
-source $SOURCE/lib/theme-and-appearance.zsh
+# Init apps, define paths and envs
+source $SOURCE/apps-paths.zsh
 
 # Aliases
-source $SOURCE/aliases/aliases.zsh
+source $SOURCE/aliases.zsh
 
 # Colors
-source $SOURCE/colors/config.zsh
+source $SOURCE/colors.zsh
 
 # Completion
-source $SOURCE/completion/completions.zsh
-
-# Env settings
-source $SOURCE/env/env.zsh
+source $SOURCE/completions.zsh
 
 # Various functions
-source $SOURCE/functions/functions.zsh
+source $SOURCE/functions.zsh
 
-# Paths
-source $SOURCE/path/paths.zsh
