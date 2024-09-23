@@ -27,7 +27,7 @@ fi
 
 # Rust
 if [ -d "$HOME/.cargo" ]; then
-    "$HOME/.cargo/env"
+    [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 fi
 
 # bun
