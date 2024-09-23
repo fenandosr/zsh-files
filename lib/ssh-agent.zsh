@@ -5,7 +5,6 @@ function _start_agent() {
   # Check if ssh-agent is already running
   if [[ -f "$ssh_env_cache" ]]; then
     . "$ssh_env_cache" > /dev/null
-
     # Test if $SSH_AUTH_SOCK is visible
     zmodload zsh/net/socket
     if [[ -S "$SSH_AUTH_SOCK" ]] && zsocket "$SSH_AUTH_SOCK" 2>/dev/null; then
@@ -28,11 +27,6 @@ function _add_identities() {
   local id file line sig lines
   local -a identities loaded_sigs loaded_ids not_loaded
   zstyle -a :omz:plugins:ssh-agent identities identities
-
-  # check for .ssh folder presence
-  if [[ ! -d "$HOME/.ssh" ]]; then
-    return
-  fi
 
   # add default keys if no identities were set up via zstyle
   # this is to mimic the call to ssh-add with no identities

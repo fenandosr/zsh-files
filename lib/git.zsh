@@ -7,7 +7,6 @@ function git_prompt_info() {
   fi
 }
 
-
 # Checks if working tree is dirty
 parse_git_dirty() {
   local SUBMODULE_SYNTAX=''
@@ -38,7 +37,6 @@ git_remote_status() {
     if [[ -n ${remote} ]] ; then
         ahead=$(command git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
         behind=$(command git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-
         if [ $ahead -eq 0 ] && [ $behind -gt 0 ]
         then
             echo "$ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE"
@@ -133,7 +131,6 @@ function git_compare_version() {
   INPUT_GIT_VERSION=(${(s/./)INPUT_GIT_VERSION});
   INSTALLED_GIT_VERSION=($(command git --version 2>/dev/null));
   INSTALLED_GIT_VERSION=(${(s/./)INSTALLED_GIT_VERSION[3]});
-
   for i in {1..3}; do
     if [[ $INSTALLED_GIT_VERSION[$i] -lt $INPUT_GIT_VERSION[$i] ]]; then
       echo -1
@@ -147,5 +144,3 @@ function git_compare_version() {
 POST_1_7_2_GIT=$(git_compare_version "1.7.2")
 #clean up the namespace slightly by removing the checker function
 unset -f git_compare_version
-
-

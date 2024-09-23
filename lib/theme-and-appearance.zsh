@@ -20,7 +20,6 @@ then
   fi
 fi
 
-#setopt no_beep
 setopt auto_cd
 setopt multios
 setopt cdablevarS
