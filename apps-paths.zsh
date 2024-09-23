@@ -73,6 +73,11 @@ elif [[ $OSTYPE == darwin* ]]; then
     export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
     export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
+    # Macports
+    if [ -d "/opt/local/bin" ]; then
+        export PATH="/opt/local/bin:$PATH"
+    fi
+
 else
     if [[ $(uname -r) == *microsoft* ]]; then
         # wsl
