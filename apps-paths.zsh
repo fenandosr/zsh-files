@@ -33,7 +33,9 @@ if [ -d "$HOME/.bun/bin" ]; then
 fi
 
 # direnv
-eval "$(direnv hook zsh)"
+if command -v direnv; then
+    eval "$(direnv hook zsh)"
+fi
 
 #
 # OS Specific Paths
