@@ -25,6 +25,11 @@ if [ -d "/usr/local/go/bin" ]; then
     export GOPATH=$HOME/go
 fi
 
+# Rust
+if [ -d "$HOME/.cargo" ]; then
+    "$HOME/.cargo/env"
+fi
+
 # bun
 if [ -d "$HOME/.bun/bin" ]; then
     export BUN_INSTALL=$HOME/.bun
