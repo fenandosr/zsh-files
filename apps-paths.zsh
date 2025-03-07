@@ -1,6 +1,10 @@
 #
 # Paths and ENV VARS
 #
+# local bin
+if [ -d "$HOME/.local/bin/" ]; then
+    export PATH="$PATH/.local/bin"
+fi
 
 # conda
 if [ -d "$HOME/miniforge3/bin/" ]; then
@@ -9,20 +13,20 @@ fi
 
 # pyenv
 if [ -d "$HOME/.pyenv/bin" ]; then
-    export PATH=$PATH:$HOME/.pyenv/bin
+    export PATH="$PATH:$HOME/.pyenv/bin"
     eval "$(pyenv init -)"
 fi
 
 # julia
 if [ -d "$HOME/.juliaup/bin" ]; then
-    export PATH=$PATH/.juliaup/bin
+    export PATH="$PATH/.juliaup/bin"
 fi
 
 # Go
 if [ -d "/usr/local/go/bin" ]; then
-    export PATH=$PATH:/usr/local/go/bin
-    export PATH=$PATH:$HOME/go/bin
-    export GOPATH=$HOME/go
+    export PATH="$PATH:/usr/local/go/bin"
+    export PATH="$PATH:$HOME/go/bin"
+    export GOPATH="$HOME/go"
 fi
 
 # Rust
@@ -32,8 +36,8 @@ fi
 
 # bun
 if [ -d "$HOME/.bun/bin" ]; then
-    export BUN_INSTALL=$HOME/.bun
-    export PATH=$BUN_INSTALL/bin:$PATH
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
     [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 fi
 
