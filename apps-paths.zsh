@@ -12,8 +12,8 @@ if [ -d "$HOME/miniforge3/bin/" ]; then
 fi
 
 # pyenv
-if [ -d "$HOME/.pyenv/bin" ]; then
-    export PATH="$PATH:$HOME/.pyenv/bin"
+if [ -d "$HOME/.pyenv/shims" ]; then
+    export PATH="$PATH:$HOME/.pyenv/shims"
     eval "$(pyenv init -)"
 fi
 
