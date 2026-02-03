@@ -1,73 +1,101 @@
-# Get the filename to store/lookup the environment from
-ssh_env_cache="$HOME/.ssh/environment-$SHORT_HOST"
+# One shared ssh-agent for all shells (macOS + Linux), no extra dependencies.
 
-function _start_agent() {
-  # Check if ssh-agent is already running
-  if [[ -f "$ssh_env_cache" ]]; then
-    . "$ssh_env_cache" > /dev/null
-    # Test if $SSH_AUTH_SOCK is visible
-    zmodload zsh/net/socket
-    if [[ -S "$SSH_AUTH_SOCK" ]] && zsocket "$SSH_AUTH_SOCK" 2>/dev/null; then
-      return 0
-    fi
-  fi
+# Where to store the cached environment for this user.
+# Prefer XDG_RUNTIME_DIR on Linux; fallback to ~/.ssh on macOS/others.
+_agent_dir="${XDG_RUNTIME_DIR:-$HOME/.ssh}"
+[[ -d "$_agent_dir" ]] || mkdir -p "$_agent_dir" 2>/dev/null
 
-  # Set a maximum lifetime for identities added to ssh-agent
-  local lifetime
-  zstyle -s :omz:plugins:ssh-agent lifetime lifetime
+ssh_env_cache="$_agent_dir/ssh-agent.env"
 
-  # start ssh-agent and setup environment
-  zstyle -t :omz:plugins:ssh-agent quiet || echo >&2 "Starting ssh-agent ..."
-  ssh-agent -s ${lifetime:+-t} ${lifetime} | sed '/^echo/d' >! "$ssh_env_cache"
-  chmod 600 "$ssh_env_cache"
-  . "$ssh_env_cache" > /dev/null
+# Optional: list of keys to ensure are loaded (filenames or absolute paths).
+# If empty, we will attempt default keys (id_ed25519, id_rsa, etc.) only if needed.
+typeset -a SSH_AGENT_KEYS
+SSH_AGENT_KEYS=(
+  # "$HOME/.ssh/id_ed25519_work"
+  # "$HOME/.ssh/id_ed25519_personal"
+)
+
+function _ssh_agent_socket_ok() {
+  # Returns 0 if SSH_AUTH_SOCK points to a working agent.
+  [[ -n "$SSH_AUTH_SOCK" && -S "$SSH_AUTH_SOCK" ]] || return 1
+  ssh-add -l >/dev/null 2>&1 || return 1
+  return 0
 }
 
-function _add_identities() {
-  local id file line sig lines
-  local -a identities loaded_sigs loaded_ids not_loaded
-  zstyle -a :omz:plugins:ssh-agent identities identities
+function _ssh_agent_load_env() {
+  # Load cached env if present
+  [[ -r "$ssh_env_cache" ]] || return 1
+  source "$ssh_env_cache" >/dev/null 2>&1 || return 1
+  _ssh_agent_socket_ok || return 1
+  return 0
+}
 
-  # add default keys if no identities were set up via zstyle
-  # this is to mimic the call to ssh-add with no identities
-  if [[ ${#identities} -eq 0 ]]; then
-    # key list found on `ssh-add` man page's DESCRIPTION section
-    for id in id_rsa id_dsa id_ecdsa id_ed25519 identity; do
-      # check if file exists
-      [[ -f "$HOME/.ssh/$id" ]] && identities+=($id)
-    done
+function _ssh_agent_start() {
+  # Start a new agent and write env cache
+  umask 077
+  ssh-agent -s | sed '/^echo/d' >! "$ssh_env_cache"
+  chmod 600 "$ssh_env_cache" 2>/dev/null
+  source "$ssh_env_cache" >/dev/null 2>&1
+  _ssh_agent_socket_ok || return 1
+  return 0
+}
+
+function _ssh_agent_ensure() {
+  # Try to load existing agent; else start a new one.
+  if _ssh_agent_load_env; then
+    return 0
   fi
 
-  # get list of loaded identities' signatures and filenames
-  if lines=$(ssh-add -l); then
+  # If cache exists but is stale, remove it to avoid confusion
+  [[ -e "$ssh_env_cache" ]] && rm -f "$ssh_env_cache" 2>/dev/null
+
+  _ssh_agent_start
+}
+
+function _ssh_agent_add_keys() {
+  local -a want_keys not_loaded
+  local lines line sig file
+  local -a loaded_sigs loaded_ids
+
+  # Gather list of already-loaded keys
+  if lines=$(ssh-add -l 2>/dev/null); then
     for line in ${(f)lines}; do
       loaded_sigs+=${${(z)line}[2]}
       loaded_ids+=${${(z)line}[3]}
     done
   fi
 
-  # add identities if not already loaded
-  for id in $identities; do
-    # if id is an absolute path, make file equal to id
-    [[ "$id" = /* ]] && file="$id" || file="$HOME/.ssh/$id"
-    # check for filename match, otherwise try for signature match
+  # Decide which keys to try
+  if (( ${#SSH_AGENT_KEYS} > 0 )); then
+    want_keys=("${SSH_AGENT_KEYS[@]}")
+  else
+    # Defaults similar to ssh-add with no args
+    for id in id_ed25519 id_rsa id_ecdsa id_dsa identity; do
+      [[ -f "$HOME/.ssh/$id" ]] && want_keys+=("$HOME/.ssh/$id")
+    done
+  fi
+
+  # Find which are not loaded yet
+  for file in "${want_keys[@]}"; do
+    [[ -f "$file" ]] || continue
+
     if [[ ${loaded_ids[(I)$file]} -le 0 ]]; then
-      sig="$(ssh-keygen -lf "$file" | awk '{print $2}')"
-      [[ ${loaded_sigs[(I)$sig]} -le 0 ]] && not_loaded+=("$file")
+      sig="$(ssh-keygen -lf "$file" 2>/dev/null | awk '{print $2}')"
+      if [[ -n "$sig" && ${loaded_sigs[(I)$sig]} -le 0 ]]; then
+        not_loaded+=("$file")
+      fi
     fi
   done
 
-  # abort if no identities need to be loaded
-  if [[ ${#not_loaded} -eq 0 ]]; then
-    return
+  # Add only missing keys (this is where you'll be prompted once per agent lifetime)
+  if (( ${#not_loaded} > 0 )); then
+    ssh-add "${not_loaded[@]}"
   fi
-
-  ssh-add ${^not_loaded}
 }
 
-_start_agent
+# Main
+_ssh_agent_ensure && _ssh_agent_add_keys
 
-_add_identities
+unset _agent_dir ssh_env_cache
+unfunction _ssh_agent_socket_ok _ssh_agent_load_env _ssh_agent_start _ssh_agent_ensure _ssh_agent_add_keys
 
-unset agent_forwarding ssh_env_cache
-unfunction _start_agent _add_identities
