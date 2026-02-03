@@ -93,17 +93,3 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 
-#
-# OS Specific functions
-#
-if [[ $OSTYPE == linux-gnu ]]; then
-    #nothing
-elif [[ $OSTYPE == darwin* ]]; then
-    #nothing
-else
-    if [[ $(uname -r) == *microsoft* ]]; then
-        # wsl
-    else
-        #nothing
-    fi
-fi

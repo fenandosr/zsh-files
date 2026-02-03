@@ -1,20 +1,9 @@
 #
 # Paths and ENV VARS
 #
-# local bin
-if [ -d "$HOME/.local/bin/" ]; then
-    export PATH="$PATH/.local/bin"
-fi
-
 # conda
 if [ -d "$HOME/miniforge3/bin/" ]; then
     eval "$($HOME/miniforge3/bin/conda shell.zsh hook)"
-fi
-
-# pyenv
-if [ -d "$HOME/.pyenv/shims" ]; then
-    export PATH="$PATH:$HOME/.pyenv/shims"
-    eval "$(pyenv init -)"
 fi
 
 # julia
@@ -82,10 +71,4 @@ elif [[ $OSTYPE == darwin* ]]; then
         export PATH="/opt/local/bin:$PATH"
     fi
 
-else
-    if [[ $(uname -r) == *microsoft* ]]; then
-        # wsl
-    else
-        #nothing
-    fi
 fi

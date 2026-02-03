@@ -14,9 +14,6 @@ source $SOURCE/aliases.zsh
 # Colors
 source $SOURCE/colors.zsh
 
-# Completion
-source $SOURCE/completions.zsh
-
 # Various functions
 source $SOURCE/functions.zsh
 

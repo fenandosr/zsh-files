@@ -29,10 +29,4 @@ elif [[ $OSTYPE == darwin* ]]; then
     alias hidehiddenfiles='defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder'
     # Open from command line
     alias finder='open -a Finder '
-else
-    if [[ $(uname -r) == *microsoft* ]]; then
-        # wsl
-    else
-        #nothing
-    fi
 fi
