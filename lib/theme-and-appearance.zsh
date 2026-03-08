@@ -34,7 +34,7 @@ fi
 # Apply theming defaults
 PS1="%n@%m:%~%# "
 
-PROMPT='%{$fg[green]%}[%{$fg[white]%}%n%{$fg[green]%}] [%{$fg[white]%}%~%{$fg[green]%}] >%{$reset_color%} '
+PROMPT='%{$fg[green]%}[%{$fg[white]%}%n@%m%{$fg[green]%}] [%{$fg[white]%}%~%{$fg[green]%}] >%{$reset_color%} '
 RPROMPT='%{$fg[green]%}[%{$fg[white]%}$(git_prompt_info)%{$fg[green]%}]%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=""

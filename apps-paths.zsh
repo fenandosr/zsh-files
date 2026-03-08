@@ -50,9 +50,6 @@ if [[ $OSTYPE == linux-gnu ]]; then
         [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
     fi
 
-    # Linux Homebrew
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 elif [[ $OSTYPE == darwin* ]]; then
 
     # brew
