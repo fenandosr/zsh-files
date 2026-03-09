@@ -1,9 +1,8 @@
 #
 # Paths and ENV VARS
 #
-# julia
-if [ -d "$HOME/.juliaup/bin" ]; then
-    export PATH="$PATH/.juliaup/bin"
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH="$PATH:$HOME/.local/bin"
 fi
 
 # Go
