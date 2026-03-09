@@ -1,11 +1,6 @@
 #
 # Paths and ENV VARS
 #
-# conda
-if [ -d "$HOME/miniforge3/bin/" ]; then
-    eval "$($HOME/miniforge3/bin/conda shell.zsh hook)"
-fi
-
 # julia
 if [ -d "$HOME/.juliaup/bin" ]; then
     export PATH="$PATH/.juliaup/bin"
