@@ -1,6 +1,10 @@
 #
 # Paths and ENV VARS
 #
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH="$PATH:$HOME/.local/bin"
+fi
+
 # conda
 if [ -d "$HOME/miniforge3/bin/" ]; then
     eval "$($HOME/miniforge3/bin/conda shell.zsh hook)"
