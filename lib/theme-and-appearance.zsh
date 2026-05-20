@@ -34,7 +34,44 @@ fi
 # Apply theming defaults
 PS1="%n@%m:%~%# "
 
-PROMPT='%{$fg[green]%}[%{$fg[white]%}%n@%m%{$fg[green]%}] [%{$fg[white]%}%~%{$fg[green]%}] >%{$reset_color%} '
+_prompt_path() {
+  local git_root
+  git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ -n "$git_root" ]]; then
+    local path_str="${git_root:t}${PWD#$git_root}"
+    if [[ -z $(git status --porcelain 2>/dev/null) ]]; then
+      print -rn -- "%F{${_PROMPT_PATH_CLEAN_COLOR}}${path_str}%f"
+    else
+      print -rn -- "%F{${_PROMPT_PATH_DIRTY_COLOR}}${path_str}%f"
+    fi
+  else
+    print -rn -- "%F{${_PROMPT_PATH_CLEAN_COLOR}}${PWD/#$HOME/~}%f"
+  fi
+}
+
+theme-dark() {
+  _CURRENT_THEME=dark
+  _PROMPT_PATH_CLEAN_COLOR=white
+  _PROMPT_PATH_DIRTY_COLOR=red
+  PROMPT='%{$fg[green]%}[%{$fg[white]%}%n@%m%{$fg[green]%}] [$(_prompt_path)%{$fg[green]%}] >%{$reset_color%} '
+  export LSCOLORS="Gxfxcxdxbxegedabagacad"
+}
+
+theme-light() {
+  _CURRENT_THEME=light
+  _PROMPT_PATH_CLEAN_COLOR=blue
+  _PROMPT_PATH_DIRTY_COLOR=red
+  PROMPT='%{$fg[blue]%}[%{$fg_bold[black]%}%n@%m%{$fg[blue]%}] [$(_prompt_path)%{$fg[blue]%}] >%{$reset_color%} '
+  export LSCOLORS="ExFxBxDxCxegedabagacad"
+}
+
+theme-toggle() {
+  [[ "$_CURRENT_THEME" == "dark" ]] && theme-light || theme-dark
+}
+
+# Default: dark theme
+theme-dark
+
 RPROMPT=''
 
 # Setup the prompt with pretty colors
