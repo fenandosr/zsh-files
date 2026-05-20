@@ -22,7 +22,12 @@ alias itree='rg --files --hidden --ignore --glob "!.git/" "$@" | tree --fromfile
 # OS Specific Aliases
 #
 if [[ $OSTYPE == linux-gnu ]]; then
-    #nothing
+    # open: xdg-open on Linux, wslview/explorer.exe on WSL
+    if [[ -n "$IS_WSL" ]]; then
+        command -v wslview &>/dev/null && alias open='wslview' || alias open='explorer.exe'
+    else
+        command -v xdg-open &>/dev/null && alias open='xdg-open'
+    fi
 elif [[ $OSTYPE == darwin* ]]; then
     # Hidden files
     alias showhiddenfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder'

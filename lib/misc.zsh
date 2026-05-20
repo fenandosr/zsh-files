@@ -12,4 +12,4 @@ setopt long_list_jobs
 export PAGER="less"
 export LESS="-R"
 
-export LC_CTYPE=$LANG
+[[ -n "$LANG" ]] && export LC_CTYPE=$LANG

@@ -22,7 +22,7 @@ fi
 
 setopt auto_cd
 setopt multios
-setopt cdablevarS
+setopt cdablevars
 
 if [[ x$WINDOW != x ]]
 then
@@ -35,12 +35,7 @@ fi
 PS1="%n@%m:%~%# "
 
 PROMPT='%{$fg[green]%}[%{$fg[white]%}%n@%m%{$fg[green]%}] [%{$fg[white]%}%~%{$fg[green]%}] >%{$reset_color%} '
-RPROMPT='%{$fg[green]%}[%{$fg[white]%}$(git_prompt_info)%{$fg[green]%}]%{$reset_color%}'
-
-ZSH_THEME_GIT_PROMPT_PREFIX=""
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}✘"
-ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}✔"
+RPROMPT=''
 
 # Setup the prompt with pretty colors
 setopt prompt_subst

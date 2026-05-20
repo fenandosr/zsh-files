@@ -1,6 +1,10 @@
 # Better grep results
+# Note: GREP_OPTIONS was deprecated in GNU grep 2.21; use aliases instead.
 
-GREP_OPTIONS="--color=auto"
+export GREP_COLOR='1;32'
+
+# Build options list for the alias
+_grep_opts="--color=auto"
 
 # avoid VCS folders (if the necessary grep flags are available)
 grep-flag-available() {
@@ -8,15 +12,14 @@ grep-flag-available() {
 }
 if grep-flag-available --exclude-dir=.cvs; then
     for PATTERN in .cvs .git .hg .svn; do
-        GREP_OPTIONS+=" --exclude-dir=$PATTERN"
+        _grep_opts+=" --exclude-dir=$PATTERN"
     done
 elif grep-flag-available --exclude=.cvs; then
     for PATTERN in .cvs .git .hg .svn; do
-        GREP_OPTIONS+=" --exclude=$PATTERN"
+        _grep_opts+=" --exclude=$PATTERN"
     done
 fi
 unfunction grep-flag-available
 
-alias grep="grep $GREP_OPTIONS"
-export GREP_OPTIONS="$GREP_OPTIONS"
-export GREP_COLOR='1;32'
+alias grep="grep $_grep_opts"
+unset _grep_opts

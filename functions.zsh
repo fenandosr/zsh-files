@@ -38,7 +38,7 @@ incognito() {
 #
 function alias_value() {
     alias "$1" | sed "s/^$1='\(.*\)'$/\1/"
-    test $(alias "$1")
+    alias "$1" &>/dev/null
 }
 
 

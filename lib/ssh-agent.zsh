@@ -17,8 +17,10 @@ SSH_AGENT_KEYS=(
 
 function _ssh_agent_socket_ok() {
   # Returns 0 if SSH_AUTH_SOCK points to a working agent.
+  # ssh-add -l exits: 0=has keys, 1=no keys (agent ok), 2=cannot connect
   [[ -n "$SSH_AUTH_SOCK" && -S "$SSH_AUTH_SOCK" ]] || return 1
-  ssh-add -l >/dev/null 2>&1 || return 1
+  ssh-add -l >/dev/null 2>&1
+  [[ $? -le 1 ]] || return 1
   return 0
 }
 
