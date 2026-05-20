@@ -29,6 +29,11 @@ if command -v direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
+# npm-global
+if [ -d "$HOME/.npm-global" ]; then
+    export PATH="$HOME/npm-global/bin:$PATH"
+fi
+
 #
 # OS Specific Paths
 #
