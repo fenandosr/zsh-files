@@ -75,29 +75,3 @@ extract() {
         echo "'$1' is not a valid file"
     fi
 }
-
-# For history on peco
-# https://gist.github.com/nacyot/2c9151f2274ccad8bffc
-function peco-select-history() {
-  local tac selected
-
-  if command -v tac >/dev/null 2>&1; then
-    tac="tac"
-  else
-    tac="tail -r"
-  fi
-
-  zle -I
-
-  selected=$(
-    fc -rl 1 | sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' | \
-    peco --query "$LBUFFER"
-  ) || return
-
-  BUFFER="$selected"
-  CURSOR=${#BUFFER}
-
-  zle reset-prompt
-  zle redisplay
-}
-zle -N peco-select-history
