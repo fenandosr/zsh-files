@@ -52,9 +52,6 @@ else
   bindkey "\e[3~" delete-char
 fi
 
-# peco history
-bindkey '^r' peco-select-history
-
 # Edit the current command line in $EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
