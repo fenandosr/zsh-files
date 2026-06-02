@@ -56,3 +56,23 @@ fi
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
+
+# Ctrl+R: history search
+# Priority: fzf-history-widget (if fzf key-bindings were sourced) > peco > zsh default
+_history_search_widget() {
+  if zle -l fzf-history-widget &>/dev/null 2>&1; then
+    zle fzf-history-widget
+  elif command -v peco &>/dev/null; then
+    local selected
+    selected=$(fc -rln 1 | peco --query "$LBUFFER")
+    if [[ -n "$selected" ]]; then
+      BUFFER="$selected"
+      CURSOR=$#BUFFER
+    fi
+    zle reset-prompt
+  else
+    zle history-incremental-search-backward
+  fi
+}
+zle -N _history_search_widget
+bindkey '^R' _history_search_widget

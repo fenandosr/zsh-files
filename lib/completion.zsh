@@ -32,6 +32,7 @@ zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-dir
 cdpath=(.)
 
 # Use caching so that commands like apt and dpkg complete are useable
+mkdir -p "$HOME/.zsh/cache"
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $HOME/.zsh/cache/
 

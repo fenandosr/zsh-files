@@ -31,7 +31,7 @@ fi
 
 # npm-global
 if [ -d "$HOME/.npm-global" ]; then
-    export PATH="$HOME/npm-global/bin:$PATH"
+    export PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
 # Ruby gems
@@ -58,8 +58,7 @@ if [[ $OSTYPE == linux-gnu ]]; then
 
 elif [[ $OSTYPE == darwin* ]]; then
 
-    # brew
-    export PATH=/opt/homebrew/bin:$PATH
+    # brew PATH is handled by shellenv in .zshrc
 
     # Node Version Manager
     export NVM_DIR="${HOME}/.nvm"
@@ -76,4 +75,9 @@ elif [[ $OSTYPE == darwin* ]]; then
         export PATH="/opt/local/bin:$PATH"
     fi
 
+fi
+
+# micromamba shell integration (conda-compatible activate/deactivate)
+if command -v micromamba &>/dev/null; then
+    eval "$(micromamba shell hook --shell zsh)"
 fi
