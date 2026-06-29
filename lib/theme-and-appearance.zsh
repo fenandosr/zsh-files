@@ -55,6 +55,7 @@ theme-dark() {
   _PROMPT_PATH_DIRTY_COLOR=red
   PROMPT='%{$fg[green]%}[%{$fg[white]%}%n@%m%{$fg[green]%}] [$(_prompt_path)%{$fg[green]%}] >%{$reset_color%} '
   export LSCOLORS="Gxfxcxdxbxegedabagacad"
+  [[ -f ~/.config/alacritty/dark.toml ]] && cp ~/.config/alacritty/dark.toml ~/.config/alacritty/theme.toml
 }
 
 theme-light() {
@@ -63,6 +64,7 @@ theme-light() {
   _PROMPT_PATH_DIRTY_COLOR=red
   PROMPT='%{$fg[blue]%}[%{$fg_bold[black]%}%n@%m%{$fg[blue]%}] [$(_prompt_path)%{$fg[blue]%}] >%{$reset_color%} '
   export LSCOLORS="ExFxBxDxCxegedabagacad"
+  [[ -f ~/.config/alacritty/light.toml ]] && cp ~/.config/alacritty/light.toml ~/.config/alacritty/theme.toml
 }
 
 theme-toggle() {
