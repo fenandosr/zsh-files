@@ -55,6 +55,14 @@ theme-dark() {
   _PROMPT_PATH_DIRTY_COLOR=red
   PROMPT='%{$fg[green]%}[%{$fg[white]%}%n@%m%{$fg[green]%}] [$(_prompt_path)%{$fg[green]%}] >%{$reset_color%} '
   export LSCOLORS="Gxfxcxdxbxegedabagacad"
+  if [[ -n "$TMUX" ]]; then
+    tmux set-option -g status-style "fg=white,bg=black"
+    tmux set-option -g message-style "fg=white,bg=black,bright"
+    tmux set-option -g window-status-style "fg=cyan,bg=default,dim"
+    tmux set-option -g window-status-current-style "fg=black,bg=cyan,bright"
+    tmux set-option -g pane-border-style "fg=cyan"
+    tmux set-option -g pane-active-border-style "fg=red"
+  fi
 }
 
 theme-light() {
@@ -63,6 +71,14 @@ theme-light() {
   _PROMPT_PATH_DIRTY_COLOR=red
   PROMPT='%{$fg[blue]%}[%{$fg_bold[black]%}%n@%m%{$fg[blue]%}] [$(_prompt_path)%{$fg[blue]%}] >%{$reset_color%} '
   export LSCOLORS="ExFxBxDxCxegedabagacad"
+  if [[ -n "$TMUX" ]]; then
+    tmux set-option -g status-style "fg=black,bg=white"
+    tmux set-option -g message-style "fg=black,bg=white,bright"
+    tmux set-option -g window-status-style "fg=blue,bg=default,dim"
+    tmux set-option -g window-status-current-style "fg=white,bg=blue,bright"
+    tmux set-option -g pane-border-style "fg=blue"
+    tmux set-option -g pane-active-border-style "fg=red"
+  fi
 }
 
 theme-toggle() {
