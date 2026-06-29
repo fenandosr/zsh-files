@@ -63,6 +63,7 @@ theme-dark() {
     tmux set-option -g pane-border-style "fg=cyan"
     tmux set-option -g pane-active-border-style "fg=red"
   fi
+  [[ -f ~/.config/alacritty/dark.toml ]] && cp ~/.config/alacritty/dark.toml ~/.config/alacritty/theme.toml
 }
 
 theme-light() {
@@ -79,6 +80,7 @@ theme-light() {
     tmux set-option -g pane-border-style "fg=blue"
     tmux set-option -g pane-active-border-style "fg=red"
   fi
+  [[ -f ~/.config/alacritty/light.toml ]] && cp ~/.config/alacritty/light.toml ~/.config/alacritty/theme.toml
 }
 
 theme-toggle() {
