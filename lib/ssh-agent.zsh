@@ -95,8 +95,11 @@ function _ssh_agent_add_keys() {
   fi
 }
 
-# Main
-_ssh_agent_ensure && _ssh_agent_add_keys
+# Main — macOS ships a launchd ssh-agent integrated with Keychain
+# (UseKeychain/AddKeysToAgent in ~/.ssh/config), so only manage our own elsewhere.
+if [[ $OSTYPE != darwin* ]]; then
+  _ssh_agent_ensure && _ssh_agent_add_keys
+fi
 
 unset _agent_dir ssh_env_cache
 unfunction _ssh_agent_socket_ok _ssh_agent_load_env _ssh_agent_start _ssh_agent_ensure _ssh_agent_add_keys

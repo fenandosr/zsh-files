@@ -60,11 +60,7 @@ elif [[ $OSTYPE == darwin* ]]; then
 
     # brew PATH is handled by shellenv in .zshrc
 
-    # Node Version Manager
-    export NVM_DIR="${HOME}/.nvm"
-    _nvm_sh="$(brew --prefix nvm 2>/dev/null)/nvm.sh"
-    [ -s "$_nvm_sh" ] && source "$_nvm_sh"
-    unset _nvm_sh
+    # Node: fnm (see below). nvm is no longer loaded on macOS — it added ~700ms per shell.
 
     # OpenJDK
     export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
@@ -80,4 +76,9 @@ fi
 # micromamba shell integration (conda-compatible activate/deactivate)
 if command -v micromamba &>/dev/null; then
     eval "$(micromamba shell hook --shell zsh)"
+fi
+
+# fnm: fast Node version manager; reads .nvmrc/.node-version and switches on cd
+if command -v fnm &>/dev/null; then
+    eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
 fi
